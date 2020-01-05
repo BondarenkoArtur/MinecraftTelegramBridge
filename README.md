@@ -1,5 +1,5 @@
 # Telegram Bridge
-
+![](https://cf.way2muchnoise.eu/versions/telegram-bridge.svg)
 # Install
 1. Get download from [curseforge](https://www.curseforge.com/minecraft/mc-mods/telegram-bridge) and put in mods folder
 2. Create your telegram bot in Telegram with [BotFather](t.me/BotFather)
