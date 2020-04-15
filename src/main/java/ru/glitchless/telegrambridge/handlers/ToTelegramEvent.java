@@ -24,7 +24,7 @@ public class ToTelegramEvent {
         final ITextComponent textComponent = player.getCombatTracker().getDeathMessage();
         final String deathmessage = TextUtils.boldInText(textComponent.getUnformattedText(), player.getGameProfile().getName());
         final String message = TelegramBridgeConfig.text.death_message.replace("${deathmessage}", deathmessage);
-        if (event.getSource().getTrueSource() instanceof EntityPlayer
+        if (event.getSource().getSourceOfDamage() instanceof EntityPlayer
                 && TelegramBridgeConfig.relay_level.user_kill_by_user) {
             broadcastToChats(message);
             return;

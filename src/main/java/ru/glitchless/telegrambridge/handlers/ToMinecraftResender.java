@@ -35,7 +35,7 @@ public class ToMinecraftResender extends BaseMessageReceiver {
 
         String textMessage = TelegramBridgeConfig.text.chatmessage_to_minecraft.replace("${nickname}", userObject.getUsername()).replace("${message}", message);
 
-        FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentString(textMessage));
+        FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendChatMsg(new TextComponentString(textMessage));
         return true;
     }
 
