@@ -16,10 +16,19 @@ public class ToTelegramResender {
             return; // ignore
         }
 
-        final String message = event.getMessage();
+        String message = event.getMessage();
 
         if (message == null || message.isEmpty()) {
             return;
+        }
+
+        if (TelegramBridgeConfig.relay_prefix_enabled == TelegramBridgeConfig.RelayPrefixEnabled.TWO_SIDE
+            || TelegramBridgeConfig.relay_prefix_enabled == TelegramBridgeConfig.RelayPrefixEnabled.TO_TELEGRAM) {
+            if (!message.startsWith(TelegramBridgeConfig.relay_prefix)) {
+                return; // ignore
+            } else {
+                message = message.substring(TelegramBridgeConfig.relay_prefix.length());
+            }
         }
 
         final String textMessage = TelegramBridgeConfig.text.chatmessage_to_telegram.replace("${nickname}", event.getUsername()).replace("${message}", message);

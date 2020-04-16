@@ -33,6 +33,15 @@ public class ToMinecraftResender extends BaseMessageReceiver {
             return true; // ignore
         }
 
+        if (TelegramBridgeConfig.relay_prefix_enabled == TelegramBridgeConfig.RelayPrefixEnabled.TWO_SIDE
+            || TelegramBridgeConfig.relay_prefix_enabled == TelegramBridgeConfig.RelayPrefixEnabled.TO_MINECRAFT) {
+            if (!message.startsWith(TelegramBridgeConfig.relay_prefix)) {
+                return true; // ignore
+            } else {
+                message = message.substring(TelegramBridgeConfig.relay_prefix.length());
+            }
+        }
+
         String textMessage = TelegramBridgeConfig.text.chatmessage_to_minecraft.replace("${nickname}", userObject.getUsername()).replace("${message}", message);
 
         FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendChatMsg(new TextComponentString(textMessage));

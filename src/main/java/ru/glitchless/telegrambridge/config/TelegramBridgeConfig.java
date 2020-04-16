@@ -20,7 +20,10 @@ public class TelegramBridgeConfig {
     @Config.Comment("Verbose logging for telegram")
     public static boolean verbose_logging = false;
 
-    public static RelayMode relay_mode = TWO_SIDE;
+    public static RelayMode relay_mode = RelayMode.TWO_SIDE;
+
+    public static RelayPrefixEnabled relay_prefix_enabled = RelayPrefixEnabled.NONE;
+    public static String relay_prefix = "!";
 
     public static class TelegramConfig {
         @Config.Comment("the bot api token")
@@ -50,6 +53,13 @@ public class TelegramBridgeConfig {
         public String notfoundchat = "Chat `${chatid}` is not found in allowed chats. You can add it in `config/telegrambridge.cfg`";
         public String player_empty = "No one is online. Maybe it's time to fix it? :)";
         public String player_list = "*Players online*:${endline}${endline}${playerlist}${endline}Total: *${playercount}*";
+    }
+
+    public enum RelayPrefixEnabled {
+        NONE,
+        TO_MINECRAFT,
+        TO_TELEGRAM,
+        TWO_SIDE
     }
 
     public enum RelayMode {
