@@ -22,12 +22,13 @@ public class TelegramSender {
         this.SEND_URL = baseUrl + "/sendMessage";
     }
 
-    public void sendPendingMessages() {
+    public synchronized void sendPendingMessages() throws InterruptedException {
         Pair<String, String> message = pendingMessage.poll();
         while (message != null) {
             sendMessageInternal(message.getKey(), message.getValue());
             message = pendingMessage.poll();
         }
+        wait();
     }
 
     private void sendMessageInternal(String chatId, String message) {
@@ -47,7 +48,8 @@ public class TelegramSender {
         }
     }
 
-    public void sendMessage(String chatId, String message) {
+    public synchronized void sendMessage(String chatId, String message) {
         pendingMessage.add(Pair.of(chatId, message));
+        notify();
     }
 }
