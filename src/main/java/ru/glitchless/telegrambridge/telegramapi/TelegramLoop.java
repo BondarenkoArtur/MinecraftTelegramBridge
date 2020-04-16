@@ -2,13 +2,13 @@ package ru.glitchless.telegrambridge.telegramapi;
 
 public class TelegramLoop {
     private final TelegramContext context;
-    private LoopWithExpRetry receiverLoop = new LoopWithExpRetry(new LoopWithExpRetry.ThrowableRunnable() {
+    private LoopWithExpRetry receiverLoop = new LoopWithExpRetry("Telegram Receiver", new LoopWithExpRetry.ThrowableRunnable() {
         @Override
         public void run() throws Exception {
             context.getReceiver().checkUpdate();
         }
     });
-    private LoopWithExpRetry senderLoop = new LoopWithExpRetry(new LoopWithExpRetry.ThrowableRunnable() {
+    private LoopWithExpRetry senderLoop = new LoopWithExpRetry("Telegram Sender", new LoopWithExpRetry.ThrowableRunnable() {
         @Override
         public void run() throws Exception {
             context.getSender().sendPendingMessages();

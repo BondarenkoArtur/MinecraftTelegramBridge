@@ -10,7 +10,8 @@ public class LoopWithExpRetry extends Thread {
     private final ThrowableRunnable loop;
     private int retryCounter = 0;
 
-    public LoopWithExpRetry(ThrowableRunnable loop) {
+    public LoopWithExpRetry(String threadName, ThrowableRunnable loop) {
+        this.setName(threadName);
         this.loop = loop;
     }
 
