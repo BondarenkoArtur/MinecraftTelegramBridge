@@ -3,7 +3,6 @@ package ru.glitchless.telegrambridge.config;
 import net.minecraftforge.common.config.Config;
 
 import static ru.glitchless.telegrambridge.TelegramBridgeMod.MODID;
-import static ru.glitchless.telegrambridge.config.TelegramBridgeConfig.RelayMode.TWO_SIDE;
 
 @Config(modid = MODID)
 public class TelegramBridgeConfig {
@@ -25,6 +24,9 @@ public class TelegramBridgeConfig {
     public static RelayPrefixEnabled relay_prefix_enabled = RelayPrefixEnabled.NONE;
     public static String relay_prefix = "!";
 
+    public static String last_interaction_time = "0";
+    public static int long_time_minutes_amount = 360;
+
     public static class TelegramConfig {
         @Config.Comment("the bot api token")
         public String api_token = "";
@@ -35,6 +37,7 @@ public class TelegramBridgeConfig {
 
     public static class RelayLevel {
         public boolean user_join = true;
+        public boolean user_joined_after_long_time = false;
         public boolean user_leave = true;
         public boolean user_kill_by_user = true;
         public boolean user_kill_by_other = true;
@@ -47,6 +50,7 @@ public class TelegramBridgeConfig {
         public String server_start = "\\[ Server has started ]";
         public String server_stop = "\\[ Server has stopped ]";
         public String player_join = "\\[ *${nickname}* has connected ]";
+        public String player_join_after_long_time = "\\[ Server was empty, but *${nickname}* has connected! Think about joining ;) ]";
         public String player_leave = "\\[ *${nickname}* has disconnected ]";
         public String chatmessage_to_telegram = "*${nickname}:* ${message}";
         public String chatmessage_to_minecraft = "§3TelegramBridge§f / <§b${nickname}§f> ${message}";

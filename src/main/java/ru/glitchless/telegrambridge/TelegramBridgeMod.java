@@ -1,6 +1,7 @@
 package ru.glitchless.telegrambridge;
 
 import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 import ru.glitchless.telegrambridge.config.TelegramBridgeConfig;
+import ru.glitchless.telegrambridge.config.TelegramConfigHelper;
 import ru.glitchless.telegrambridge.handlers.PlayerList;
 import ru.glitchless.telegrambridge.handlers.ToMinecraftResender;
 import ru.glitchless.telegrambridge.handlers.ToTelegramEvent;
@@ -39,6 +41,7 @@ public class TelegramBridgeMod {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         context = new TelegramContext(logger);
+        TelegramConfigHelper.init(new Configuration(event.getSuggestedConfigurationFile()));
     }
 
     @Mod.EventHandler

@@ -43,7 +43,7 @@ public class PlayerList implements IMessageReceiver {
         return true;
     }
 
-    private List<String> getPlayerList() {
+    static List<String> getPlayerList() {
         final MinecraftServer is = FMLCommonHandler.instance().getMinecraftServerInstance();
         if (is == null) {
             return Collections.emptyList();
